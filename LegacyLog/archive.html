@@ -3,6 +3,29 @@
 <head>
   <title>LegacyLog Archive</title>
   <link rel="stylesheet" href="CSS/style.css">
+  <style>
+  .card {
+    border: 3px solid #4af;
+    padding: 1rem;
+    margin: 1rem;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0% { box-shadow: 0 0 4px #4af; }
+    50% { box-shadow: 0 0 12px #4af; }
+    100% { box-shadow: 0 0 4px #4af; }
+  }
+
+  body {
+    opacity: 0;
+    animation: fadeIn 0.8s ease forwards;
+  }
+
+  @keyframes fadeIn {
+    to { opacity: 1; }
+  }
+</style>
 </head>
 <body>
 
@@ -20,6 +43,23 @@
   </div>
 
   <div id="archiveGrid" class="grid"></div>
+   <div class="card">
+    <img src="Images/super mario bros.jpg" alt="Super Mario Bros" width="200">
+    <h3>Super Mario Bros.</h3>
+    <p>NES • 1985 • JP</p>
+  </div>
+
+   <div class="card">
+    <img src="Images/chrono trigger.png" alt="Chrono Trigger" width="200">
+    <h3>Chrono Trigger</h3>
+    <p>SNES • 1995 • JP</p>
+  </div>
+
+  <div class="card">
+    <img src="Images/sonic.jpg" alt="Sonic the Hedgehog" width="200">
+    <h3>Sonic the Hedgehog</h3>
+    <p>Genesis • 1991 • US</p>
+  </div>
 </main>
 
 <script src="Javascript/archive.js"></script>

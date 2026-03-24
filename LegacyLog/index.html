@@ -4,11 +4,58 @@
   <meta charset="UTF-8">
   <title>LegacyLog — Digital Preservation</title>
   <link rel="stylesheet" href="CSS/style.css">
+    <style>
+    body {
+    opacity: 0;
+    animation: fadeIn 0.8s ease forwards;
+  }
+
+  @keyframes fadeIn {
+    to { opacity: 1; }
+  }
+
+  .pixel-header {
+    font-family: 'Press Start 2P', monospace;
+    color: rgb(0, 1, 2);
+    text-shadow:
+      0 0 4px #4af,
+      0 0 8px #4af,
+      0 0 12px #4af,
+      0 0 16px #4af;
+    animation: glowPulse 2s infinite ease-in-out;
+  }
+
+  @keyframes glowPulse {
+    0% {
+      text-shadow:
+        0 0 4px rgb(249, 255, 68),
+        0 0 8px rgb(255, 215, 68),
+        0 0 12px rgb(255, 243, 68),
+        0 0 16px rgb(255, 230, 68);
+    }
+    50% {
+      text-shadow:
+        0 0 6px rgb(255, 244, 119),
+        0 0 12px rgb(244, 255, 119),
+        0 0 18px rgb(255, 244, 119),
+        0 0 24px rgb(255, 241, 119);
+    }
+    100% {
+      text-shadow:
+        0 0 4px rgb(255, 255, 68),
+        0 0 8px rgb(255, 243, 68),
+        0 0 12px rgb(255, 208, 68),
+        0 0 16px #4af;
+    }
+  }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
 </head>
 <body>
 
 <header>
-  <h1>LegacyLog</h1>
+  <h1 class="pixel-header">LegacyLog</h1>
   <nav>
     <a href="archive.html">Archive</a>
     <a href="services.html">Services</a>
