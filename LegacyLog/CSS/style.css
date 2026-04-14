@@ -1,112 +1,186 @@
+@import url('https://googleapis.com');
+
 :root {
-  --bg: #0f1115;
-  --panel: #171a21;
-  --accent: #4da6ff;
-  --text: #e6e6e6;
-  --muted: #9aa0aa;
-  --border: #2a2f3a;
+  --bg: #050608;          /* Deepest Black-Blue */
+  --panel: #11141b;       /* Dark Navy Charcoal */
+  --accent: #00f2ff;      /* Cyber Cyan */
+  --accent-glow: #f9ff44; /* Retro Gold */
+  --text: #ffffff;        /* Pure White for readability */
+  --muted: #8892a0;
+  --border: #2a3441;
+  --crt-green: #33ff33;
 }
 
+/* --- Global Foundations --- */
 * {
   box-sizing: border-box;
-  font-family: "Segoe UI", system-ui, sans-serif;
+  font-family: 'Space Mono', monospace;
 }
 
 body {
   margin: 0;
-  background: var(--bg);
+  background-color: var(--bg);
   color: var(--text);
-  
+  line-height: 1.6;
+  /* Subliminal Scanlines: Very subtle and dark to ensure text is clear */
+  background: linear-gradient(rgba(10, 10, 10, 0) 50%, rgba(0, 0, 0, 0.4) 50%), 
+              linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.02));
+  background-size: 100% 3px, 3px 100%;
+  animation: flicker 0.15s infinite;
 }
 
+/* --- Navigation & Header --- */
 header {
   background: var(--panel);
-  padding: 1rem 2rem;
-  border-bottom: 1px solid var(--border);
+  padding: 1.5rem 5%;
+  border-bottom: 3px solid var(--accent);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.8);
 }
 
 header h1 {
-  font-size: 1.4rem;
-  color: var(--accent);
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1.2rem;
+  color: var(--accent-glow);
+  text-shadow: 2px 2px 0px #ff00ff;
+  margin: 0;
 }
 
 nav a {
-  margin-left: 1.2rem;
+  margin-left: 1.5rem;
   text-decoration: none;
-  color: var(--text);
-  font-size: 0.95rem;
+  color: #fff;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 1px;
 }
 
 nav a:hover {
   color: var(--accent);
+  text-shadow: 0 0 8px var(--accent);
 }
 
+/* --- Main Layout Sections --- */
 main {
-  padding: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 3rem 20px;
 }
 
+.hero {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.hero h2 {
+  font-size: 2.8rem;
+  color: #fff;
+  text-shadow: 0 0 15px rgba(0, 242, 255, 0.4);
+  margin-bottom: 15px;
+}
+
+.hero p {
+  color: var(--muted);
+  font-size: 1.1rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* --- The Panels (The Boxes) --- */
 .panel {
   background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 1.5rem;
+  border: 2px solid var(--border);
+  padding: 2.5rem;
   margin-bottom: 2rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  transition: border-color 0.3s, transform 0.3s;
 }
 
-input, select, textarea, button {
+.panel:hover {
+  border-color: var(--accent);
+  transform: translateY(-3px);
+}
+
+.panel h2, .panel h3 {
+  color: var(--accent-glow);
+  margin-top: 0;
+}
+
+/* --- Retro Forms --- */
+input, textarea {
   width: 100%;
-  padding: 0.7rem;
-  margin-top: 0.5rem;
-  background: #0c0e13;
-  color: var(--text);
+  padding: 15px;
+  margin-top: 10px;
+  background: #000;
+  color: var(--crt-green); /* Cyber typing text */
   border: 1px solid var(--border);
-  border-radius: 4px;
+  font-size: 1.1rem;
+  outline: none;
+}
+
+input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 10px rgba(0, 242, 255, 0.3);
 }
 
 button {
-  background: var(--accent);
+  background: var(--accent-glow);
+  color: #000;
   border: none;
-  margin-top: 1rem;
+  padding: 15px 30px;
+  margin-top: 20px;
+  font-weight: 900;
+  text-transform: uppercase;
   cursor: pointer;
+  width: 100%;
+  font-size: 1rem;
+  letter-spacing: 1px;
 }
 
 button:hover {
-  opacity: 0.9;
+  background: var(--accent);
+  color: #000;
+  box-shadow: 0 0 20px var(--accent);
 }
 
+/* --- Archive & Grid Cards --- */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 25px;
 }
 
 .card {
-  background: #0c0e13;
-  border: 1px solid var(--border);
-  border-radius: 5px;
-  overflow: hidden;
-  background: #3b2222;
-  padding: 1rem;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  width: 260px;
+  background: #000;
+  border: 2px solid var(--border);
+  padding: 1.5rem;
+  text-align: center;
+  transition: 0.3s;
 }
 
-.card h3 {
-  margin: 0.2rem 0;
-  font-size: 1rem;
-}
-
-.muted {
-  color: var(--muted);
-  font-size: 0.85rem;
+.card:hover {
+  border-color: var(--accent-glow);
+  box-shadow: 0 0 15px rgba(249, 255, 68, 0.2);
 }
 
 .card-img {
   width: 100%;
-  height: 160px;
-  background-size: cover;
-  background-position: center;
+  height: 180px;
+  background-color: #0d1117;
+  border: 1px solid var(--border);
+  margin-bottom: 15px;
+  border-radius: 4px;
 }
+
+/* CRT Flicker Animation */
+@keyframes flicker {
+  0% { opacity: 0.99; }
+  5% { opacity: 0.97; }
+  10% { opacity: 0.99; }
+  100% { opacity: 1; }
+}
+
+

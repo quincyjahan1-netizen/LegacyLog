@@ -1,39 +1,129 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Submit Collection</title>
-  <link rel="stylesheet" href="CSS/style.css">
-    <style>
-    body {
-    opacity: 0;
-    animation: fadeIn 0.8s ease forwards;
-  }
 
-  @keyframes fadeIn {
-    to { opacity: 1; }
-  }
+  <meta charset="UTF-8">
+  <title>Collection Intake — LegacyLog</title>
+  <link rel="stylesheet" href="CSS/style.css">
+  <link href="https://googleapis.com" rel="stylesheet">
+  <style>
+    body {
+      opacity: 0;
+      animation: fadeIn 0.8s ease forwards;
+      font-family: 'Inter', sans-serif;
+      background-color: #0d1117;
+      color: #e6edf3;
+    }
+
+    @keyframes fadeIn { to { opacity: 1; } }
+
+    header {
+      padding: 30px 10%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #30363d;
+    }
+
+    h1 { color: #4af; font-size: 1.5rem; }
+
+    main {
+      max-width: 700px;
+      margin: 50px auto;
+      padding: 0 20px;
+    }
+
+    /* THE FORM PANEL */
+    .panel {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 12px;
+      padding: 40px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+      color: #8b949e;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Making inputs visible and professional */
+    input, textarea {
+      width: 100%;
+      padding: 15px;
+      margin-bottom: 25px;
+      background: #0d1117; /* Darker than the panel */
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      color: #fff;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.3s;
+      box-sizing: border-box; /* Prevents width issues */
+    }
+
+    input:focus, textarea:focus {
+      border-color: #4af;
+    }
+
+    button {
+      width: 100%;
+      padding: 18px;
+      background: #4af;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    button:hover {
+      background: #358ecc;
+      transform: translateY(-2px);
+    }
   </style>
 </head>
 <body>
 
 <header>
   <h1>Collection Intake</h1>
+  <nav>
+    <a href="index.html" style="color: #8b949e; text-decoration: none; margin-left: 20px;">Home</a>
+    <a href="archive.html" style="color: #8b949e; text-decoration: none; margin-left: 20px;">Archive</a>
+    <a href="services.html" style="color: #8b949e; text-decoration: none; margin-left: 20px;">Services</a>
+  </nav>
 </header>
 
 <main>
   <div class="panel">
-    <label>Organization Name</label>
-    <input>
+    <form action="#" method="POST"> <!-- This connects to your PHP/Database script -->
+      <label for="org">Organization / Estate Name</label>
+      <input type="text" id="org" placeholder="e.g. University of Richmond Library">
 
-    <label>Collection Description</label>
-    <textarea rows="5"></textarea>
+      <label for="desc">Collection Description</label>
+      <textarea id="desc" rows="5" placeholder="Describe the hardware, region, and condition..."></textarea>
 
-    <label>Estimated Item Count</label>
-    <input type="number">
+      <label for="count">Estimated Item Count</label>
+      <input type="number" id="count" placeholder="0">
 
-    <button>Request Quote</button>
+      <button type="button" style="width: 100%; padding: 20px; background: #4af; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; position: relative; z-index: 10; display: block;" onclick="alert('Inquiry sent! A preservation specialist will contact your organization shortly.')">
+  Submit Request for Quote
+</button>
+
+    </form>
+    <p style="text-align: center; margin-top: 20px; color: #8b949e; font-size: 0.8rem;">
+      *All submissions are encrypted and reviewed by a preservation specialist.
+    </p>
   </div>
 </main>
 
 </body>
 </html>
+

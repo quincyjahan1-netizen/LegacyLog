@@ -1,38 +1,124 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Client Dashboard</title>
+  <meta charset="UTF-8">
+  <title>Client Portal — LegacyLog</title>
   <link rel="stylesheet" href="CSS/style.css">
-    <style>
+  <link href="https://googleapis.com" rel="stylesheet">
+  <style>
     body {
-    opacity: 0;
-    animation: fadeIn 0.8s ease forwards;
-  }
+      opacity: 0;
+      animation: fadeIn 0.8s ease forwards;
+      font-family: 'Inter', sans-serif;
+      background-color: #0b0e14;
+      color: #e6edf3;
+    }
 
-  @keyframes fadeIn {
-    to { opacity: 1; }
-  }
+    @keyframes fadeIn { to { opacity: 1; } }
+
+    header { padding: 25px 10%; border-bottom: 1px solid #1f242c; display: flex; justify-content: space-between; align-items: center; }
+    h1 { color: #4af; font-size: 1.4rem; }
+
+    main { max-width: 600px; margin: 80px auto; padding: 0 20px; }
+
+    .panel {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 12px;
+      padding: 40px;
+      text-align: center;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+    }
+
+    h2 { margin-bottom: 25px; font-size: 1.6rem; color: #fff; }
+
+    /* Fix the invisible input */
+    input {
+      width: 100%;
+      padding: 15px;
+      margin-bottom: 20px;
+      background: #0d1117;
+      border: 2px solid #30363d;
+      border-radius: 8px;
+      color: #fff;
+      font-size: 1.1rem;
+      text-align: center;
+      outline: none;
+      box-sizing: border-box;
+    }
+
+    input:focus { border-color: #4af; }
+
+    button {
+      width: 100%;
+      padding: 15px;
+      background: #4af;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover { background: #358ecc; transform: translateY(-2px); }
+
+    /* Dashboard List Styling (The "Soul" part) */
+    #collection { list-style: none; padding: 0; text-align: left; }
+    
+    .collection-item {
+      background: #0d1117;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      border-left: 4px solid #4af;
+      display: flex;
+      justify-content: space-between;
+    }
   </style>
 </head>
 <body>
 
 <header>
-  <h1>Client Dashboard</h1>
+  <h1>Client Portal</h1>
+  <nav>
+    <a href="index.html" style="color: #8b949e; text-decoration: none;">Exit to Site</a>
+  </nav>
 </header>
 
 <main>
+  <!-- LOGIN PANEL -->
   <div class="panel" id="loginPanel">
-    <h2>Client Login</h2>
-    <input id="clientId" placeholder="Client ID">
-    <button onclick="login()">Login</button>
+    <div style="font-size: 3rem; margin-bottom: 10px;">🔐</div>
+    <h2>Secure Client Login</h2>
+    <p style="color: #8b949e; margin-bottom: 25px; font-size: 0.9rem;">Please enter your unique 8-digit Archive ID.</p>
+    <input id="clientId" placeholder="Ex: LL-8829-X">
+    <button onclick="login()">Access Vault</button>
   </div>
 
+  <!-- HIDDEN DASHBOARD PANEL -->
   <div class="panel" id="dashboard" style="display:none;">
-    <h2>Your Collection</h2>
-    <ul id="collection"></ul>
+    <h2 style="text-align: left;">Your Collection</h2>
+    <p style="text-align: left; color: #8b949e; margin-bottom: 20px;">Active Preservation Projects:</p>
+    
+    <div id="collection">
+      <!-- These look like they came from a database -->
+      <div class="collection-item">
+        <span>Final Fantasy VII (Black Label)</span>
+        <span style="color: #4af; font-size: 0.8rem;">IN REVIEW</span>
+      </div>
+      <div class="collection-item">
+        <span>Pokémon Red Version</span>
+        <span style="color: #238636; font-size: 0.8rem;">COMPLETED</span>
+      </div>
+    </div>
+    
+    <button onclick="location.reload()" style="margin-top: 20px; background: transparent; border: 1px solid #30363d; color: #8b949e;">Logout</button>
   </div>
 </main>
 
 <script src="Javascript/dashboard.js"></script>
 </body>
 </html>
+

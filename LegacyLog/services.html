@@ -1,17 +1,89 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Preservation Services</title>
+  <title>Preservation Services — LegacyLog</title>
   <link rel="stylesheet" href="CSS/style.css">
+  <link href="https://googleapis.com" rel="stylesheet">
   <style>
     body {
-    opacity: 0;
-    animation: fadeIn 0.8s ease forwards;
-  }
+      opacity: 0;
+      animation: fadeIn 0.8s ease forwards;
+      font-family: 'Inter', sans-serif;
+      background-color: #0b0e14; /* Deep vault blue-black */
+      color: #e6edf3;
+    }
 
-  @keyframes fadeIn {
-    to { opacity: 1; }
-  }
+    @keyframes fadeIn { to { opacity: 1; } }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 30px 10%;
+      border-bottom: 1px solid #1f242c;
+    }
+
+    h1 { color: #4af; font-size: 1.8rem; }
+
+    nav a {
+      color: #8b949e;
+      text-decoration: none;
+      margin-left: 25px;
+      transition: color 0.3s;
+    }
+
+    nav a:hover { color: #4af; }
+
+    main {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    /* THE UPGRADED PANEL */
+    .panel {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 12px;
+      padding: 40px;
+      margin-bottom: 30px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .panel:hover {
+      transform: translateX(10px); /* Subtle slide effect */
+      border-color: #4af;
+      box-shadow: -5px 0 0 #4af; /* Left-side highlight */
+    }
+
+    .panel h2 {
+      color: #fff;
+      margin-bottom: 10px;
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .panel p {
+      color: #8b949e;
+      font-size: 1.1rem;
+      line-height: 1.5;
+    }
+
+    /* Professional Badge */
+    .status-badge {
+      font-size: 0.7rem;
+      background: rgba(68, 170, 255, 0.1);
+      color: #4af;
+      padding: 4px 10px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
   </style>
 </head>
 <body>
@@ -21,25 +93,27 @@
   <nav>
     <a href="index.html">Home</a>
     <a href="archive.html">Archive</a>
+    <a href="intake.html">Submit</a>
   </nav>
 </header>
 
 <main>
   <div class="panel">
-    <h2>Bit-Perfect Ripping</h2>
-    <p>Verified ROM extraction using forensic-grade hardware.</p>
+    <h2><span>💾</span> Bit-Perfect Ripping <span class="status-badge">Primary Service</span></h2>
+    <p>Verified ROM extraction using forensic-grade hardware to ensure a 1:1 digital duplicate of original media.</p>
   </div>
 
   <div class="panel">
-    <h2>Physical Restoration</h2>
-    <p>Capacitor replacement, trace repair, and shell preservation.</p>
+    <h2><span>🛠️</span> Physical Restoration <span class="status-badge">Hardware</span></h2>
+    <p>Professional-grade capacitor replacement, trace repair, and museum-quality shell preservation for aging hardware.</p>
   </div>
 
   <div class="panel">
-    <h2>Forensic Documentation</h2>
-    <p>4K photography, PCB scans, and hardware condition reports.</p>
+    <h2><span>🔬</span> Forensic Documentation <span class="status-badge">Documentation</span></h2>
+    <p>High-resolution 4K photography, microscopic PCB scans, and detailed hardware condition reporting for academic research.</p>
   </div>
 </main>
 
 </body>
 </html>
+

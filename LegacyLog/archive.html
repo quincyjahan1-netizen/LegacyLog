@@ -1,67 +1,170 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
   <title>LegacyLog Archive</title>
   <link rel="stylesheet" href="CSS/style.css">
   <style>
-  .card {
-    border: 3px solid #4af;
-    padding: 1rem;
-    margin: 1rem;
-    animation: pulse 2s infinite;
-  }
+    body {
+      opacity: 0;
+      animation: fadeIn 0.8s ease forwards;
+      background-color: #0d1117;
+      color: white;
+    }
+    @keyframes fadeIn { to { opacity: 1; } }
 
-  @keyframes pulse {
-    0% { box-shadow: 0 0 4px #4af; }
-    50% { box-shadow: 0 0 12px #4af; }
-    100% { box-shadow: 0 0 4px #4af; }
-  }
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
 
-  body {
-    opacity: 0;
-    animation: fadeIn 0.8s ease forwards;
-  }
+    .card {
+      background: #161b22;
+      border: 3px solid #4af;
+      padding: 1.5rem;
+      border-radius: 12px;
+      text-align: center;
+      cursor: pointer; /* Shows it's clickable */
+      transition: transform 0.3s ease;
+    }
+    .card:hover { transform: scale(1.05); }
 
-  @keyframes fadeIn {
-    to { opacity: 1; }
-  }
-</style>
+    /* --- THE MODAL (POPUP) STYLE --- */
+    .modal {
+      display: none; /* Hidden by default */
+      position: fixed;
+      z-index: 2000;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0,0,0,0.9); /* Dark overlay */
+    }
+
+    .modal-content {
+      background-color: #161b22;
+      margin: 10% auto;
+      padding: 30px;
+      border: 2px solid #4af;
+      width: 50%;
+      border-radius: 15px;
+      text-align: center;
+      animation: zoomIn 0.3s;
+    }
+
+    @keyframes zoomIn { from {transform: scale(0.5); opacity:0;} to {transform: scale(1); opacity:1;} }
+
+    .close-btn {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .close-btn:hover { color: #fff; }
+
+    .tech-specs {
+      text-align: left;
+      background: #0d1117;
+      padding: 15px;
+      margin-top: 20px;
+      border-left: 4px solid #4af;
+      font-family: monospace;
+    }
+  </style>
 </head>
 <body>
 
-<header>
-  <h1>The Archive</h1>
+<header style="display: flex; justify-content: space-between; align-items: center; padding: 20px 5%;">
+  <h1 style="color: #4af;">The Archive</h1>
   <nav>
-    <a href="index.html">Home</a>
-    <a href="services.html">Services</a>
+    <a href="index.html" style="color: white; text-decoration: none; margin-left: 20px;">Home</a>
+    <a href="services.html" style="color: white; text-decoration: none; margin-left: 20px;">Services</a>
   </nav>
 </header>
 
 <main>
-  <div class="panel">
-    <input id="search" placeholder="Filter by console, year, or region">
-  </div>
+  <div class="panel"><input id="search" placeholder="Filter by console, year, or region..."></div>
 
-  <div id="archiveGrid" class="grid"></div>
-   <div class="card">
-    <img src="Images/super mario bros.jpg" alt="Super Mario Bros" width="200">
-    <h3>Super Mario Bros.</h3>
-    <p>NES • 1985 • JP</p>
-  </div>
+  <div class="grid-container">
+    <!-- Card 1 -->
+    <div class="card" onclick="openModal('Super Mario Bros.', 'NES', '1985', 'Bit-perfect ROM dump, PCB high-res scan completed.')">
+      <img src="Images/super mario bros.jpg" alt="Mario" width="200">
+      <h3>Super Mario Bros.</h3>
+      <p style="color: #4af;">NES • 1985 • JP</p>
+    </div>
 
-   <div class="card">
-    <img src="Images/chrono trigger.png" alt="Chrono Trigger" width="200">
-    <h3>Chrono Trigger</h3>
-    <p>SNES • 1995 • JP</p>
-  </div>
+    <!-- Card 2 -->
+    <div class="card" onclick="openModal('Chrono Trigger', 'SNES', '1995', 'Flash-ROM verified, Case physical restoration completed.')">
+      <img src="Images/chrono trigger.png" alt="Chrono" width="200">
+      <h3>Chrono Trigger</h3>
+      <p style="color: #4af;">SNES • 1995 • JP</p>
+    </div>
 
-  <div class="card">
-    <img src="Images/sonic.jpg" alt="Sonic the Hedgehog" width="200">
-    <h3>Sonic the Hedgehog</h3>
-    <p>Genesis • 1991 • US</p>
+    <!-- Card 3 -->
+    <div class="card" onclick="openModal('Sonic the Hedgehog', 'Genesis', '1991', 'Digital extraction complete. Forensic hardware report attached.')">
+      <img src="Images/sonic.jpg" alt="Sonic" width="200">
+      <h3>Sonic the Hedgehog</h3>
+      <p style="color: #4af;">Genesis • 1991 • US</p>
+    </div>
   </div>
 </main>
 
-<script src="Javascript/archive.js"></script>
+<!-- --- THE MODAL HTML --- -->
+<div id="gameModal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeModal()">&times;</span>
+    <h2 id="modalTitle" style="color: #4af;">Game Title</h2>
+    <p id="modalMeta" style="color: #888;">Console • Year</p>
+    <div class="tech-specs">
+      <strong>PRESERVATION LOG:</strong><br>
+      <span id="modalSpecs">Details go here...</span>
+    </div>
+    <button onclick="closeModal()" style="margin-top:20px; padding:10px 20px; background:#4af; border:none; color:white; cursor:pointer;">Close Vault</button>
+  </div>
+</div>
+
+<script>
+  // --- 1. MODAL LOGIC ---
+  function openModal(title, console, year, specs) {
+    document.getElementById('modalTitle').innerText = title;
+    document.getElementById('modalMeta').innerText = console + " | " + year;
+    document.getElementById('modalSpecs').innerText = specs;
+    document.getElementById('gameModal').style.display = "block";
+  }
+
+  function closeModal() {
+    document.getElementById('gameModal').style.display = "none";
+  }
+
+  window.onclick = function(event) {
+    if (event.target == document.getElementById('gameModal')) {
+      closeModal();
+    }
+  }
+
+  // --- 2. LIVE SEARCH FILTER LOGIC ---
+  // This listens for every keystroke in the search bar
+  document.getElementById('search').addEventListener('keyup', function() {
+    let filter = this.value.toLowerCase(); // What the user typed
+    let cards = document.querySelectorAll('.card'); // Every game card
+
+    cards.forEach(card => {
+      // Get all the text inside the card (Title, Console, Year, etc.)
+      let cardText = card.innerText.toLowerCase();
+      
+      // If the typed text is found anywhere in the card, show it. Otherwise, hide it.
+      if (cardText.includes(filter)) {
+        card.style.display = "block";
+      } else {
+        card.style.display = "none";
+      }
+    });
+  });
+</script>
+
+
 </body>
 </html>
