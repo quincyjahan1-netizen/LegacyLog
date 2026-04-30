@@ -1,15 +1,82 @@
 <!doctype html>
 <html lang="en">
 <head>
+  
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Contact Us</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 2rem; max-width: 720px; }
-    label { display:block; margin-top: 1rem; font-weight: 600; }
-    input, textarea { width: 100%; padding: .6rem; margin-top: .35rem; }
-    button { margin-top: 1rem; padding: .7rem 1.2rem; cursor: pointer; }
-    .note { margin-top: 1rem; color: #444; }
+    body { font-family: Arial, sans-serif; margin: 2rem; max-width: 720px; background-color: #8b949e; }
+    
+    main {
+      max-width: 700px;
+      margin: 50px auto;
+      padding: 0 20px;
+    }
+
+    .panel {
+      background: #11141b;
+      border: 2px solid #2a3441;
+      padding: 40px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    label {
+      display: block;
+      margin-top: 1.5rem;
+      font-weight: bold;
+      color: #8b949e;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 15px;
+      margin-top: 5px;
+      background: #000;
+      color: #33ff33; /* Neon terminal green text */
+      border: 1px solid #2a3441;
+      border-radius: 4px;
+      font-family: 'Space Mono', monospace;
+      outline: none;
+    }
+
+    input:focus, textarea:focus {
+      border-color: #00f2ff;
+      box-shadow: 0 0 10px rgba(0, 242, 255, 0.3);
+    }
+
+    button {
+      width: 100%;
+      margin-top: 2rem;
+      padding: 1.2rem;
+      background: #f9ff44; /* Retro Gold */
+      color: #000;
+      border: none;
+      font-weight: 900;
+      text-transform: uppercase;
+      cursor: pointer;
+      font-size: 1rem;
+      letter-spacing: 1px;
+    }
+
+    button:hover {
+      background: #00f2ff;
+      box-shadow: 0 0 20px #00f2ff;
+    }
+
+    .note {
+      margin-top: 2rem;
+      color: blueviolet;
+      font-size: 0.75rem;
+      text-align: center;
+      font-family: monospace;
+    
+    }
+    h1 {font-family: cursive;
+    color: blue;}
   </style>
 </head>
 <body>
